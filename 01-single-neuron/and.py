@@ -65,6 +65,9 @@ if __name__ == '__main__':
             x1 = int(input("x1: "))
             x2 = int(input("x2: "))
             prob, label = predict(w1, w2, b, x1, x2)
-            print(f"Prediction: {label} (confidence of 1: {prob:.3f})")
+            if label == 1:
+                print(f"Prediction: {label} (confidence of 1: {prob:.3f})")
+            else:
+                print(f"Prediction: {label} (confidence of 0: {1-prob:.3f})")
     except (KeyboardInterrupt, ValueError):
         print("\nExiting.")
