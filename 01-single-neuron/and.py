@@ -8,7 +8,7 @@ truth_table = {
 
 def predict(w1,w2,b,x1,x2):
     z = x1*w1+x2*w2+b
-    probability = 1/(1+math.exp(-z))
+    probability = 1/(1+math.exp(-z))    #sigmoid activation function
     predicted = 1 if probability > 0.5 else 0
     return (probability,predicted)
 
