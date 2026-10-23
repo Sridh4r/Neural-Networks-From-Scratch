@@ -17,8 +17,6 @@ w1 = 0
 w2 = 0
 b = 0
 
-#initial Loss
-loss = 0
 
 def test():
     global w1, w2, b
@@ -31,10 +29,10 @@ def test():
         loss = -(y * math.log(probability) + (1-y) * math.log(1-probability))           #calculating loss
         if loss > .1 or y != y_cap:
             
-            error = probability-y                                                       #calculating error
+            error = probability-y                                                       #calculating error 
+            #here we are using probablity instead of y_cap inorder to reduce error as probablity is a contineous value ranged for 0 to 1
             
             # updating weight and bias
-
             dw1 = error*x1                      
             dw2 = error*x2
             db = error
@@ -42,16 +40,16 @@ def test():
             w2 -= .1*dw2
             b -= .1*db 
             completed =  False
-            
+
     return completed
 
-def startTaining():
+def start_training():
     i = 1
     max_epoch = 1000
-    while i < max_epoch:
-        print("Epoch ",i)
+    while i <= max_epoch:
+        
         if test():
-            print("Training completed")
+            print("Training completed atEpoch: ",i)
             return
         i+=1
     print("Training did not converge")
@@ -59,11 +57,14 @@ def startTaining():
 
 
 if __name__ == '__main__':
-    startTaining()
-    print("W1: ",w1,"w2: ",w2,"b: ",b)
-    
-    while True:
-        print("Test Yourself 'ctrl+c' to exit :")
-        x1 = int(input("x1: "))
-        x2 = int(input("x2: "))
-        print("Prediction: ",predict(w1,w2,b,x1,x2)[1],"With confidence: ",predict(w1,w2,b,x1,x2)[0])
+    start_training()
+    print(f"w1={w1:.3f}, w2={w2:.3f}, b={b:.3f}")
+    print("Test yourself (Ctrl+C to exit)")
+    try:
+        while True:
+            x1 = int(input("x1: "))
+            x2 = int(input("x2: "))
+            prob, label = predict(w1, w2, b, x1, x2)
+            print(f"Prediction: {label} (confidence of 1: {prob:.3f})")
+    except (KeyboardInterrupt, ValueError):
+        print("\nExiting.")
