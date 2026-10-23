@@ -1,8 +1,10 @@
+# Works based on survival of the fittest
+
 import string, random
 
 
 population_size = 500
-mutation_rate = .1
+
 characters = string.ascii_lowercase + " "
 
 
@@ -67,5 +69,6 @@ if __name__ == "__main__":
                 break
         else:
             valid = True
-        
+
+    mutation_rate = 1/len(target)
     evolve()
