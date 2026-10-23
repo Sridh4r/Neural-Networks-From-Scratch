@@ -1,9 +1,9 @@
 import math
 truth_table = {
     (0,0):0,
-    (0,1):0,
-    (1,0):0,
-    (1,1):1
+    (0,1):1,
+    (1,0):1,
+    (1,1):0
 }
 
 def predict(w1,w2,b,x1,x2):
@@ -45,7 +45,7 @@ def test():
 
 def start_training():
     i = 1
-    max_epoch = 1000
+    max_epoch = 10000
     while i <= max_epoch:
         
         if test():
